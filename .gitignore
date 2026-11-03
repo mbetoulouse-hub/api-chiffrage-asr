@@ -39,3 +39,5 @@ out/
 logs/
 application-dev.properties
 application-local.properties
+# Développement local
+.env.dev
