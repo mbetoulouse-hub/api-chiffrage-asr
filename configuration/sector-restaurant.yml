@@ -1,0 +1,185 @@
+restaurant:
+  title: "Restaurant"
+  buildings_type:
+    DEFAULT:
+      title: "Bâtiment restaurant"
+      rooms_type:
+        - CIRCULATIONS
+        - OFFICE
+        - MEETING
+        - BREAK_ROOM
+        - KITCHEN
+        - RESTROOM
+        - TERRACES
+        - TERRACES_SWEEPING
+        - STAIRS
+        - TOILETS
+        - CHECKROOM
+        - SHOWER
+        - OTHER
+
+  rooms_type:
+    CIRCULATIONS:
+      title: "Circulations"
+      cadence: CIRCULATION
+    OFFICE:
+      title: "Bureaux"
+      cadence: DESK_MEETING
+    MEETING:
+      title: "Salle de réunion"
+      cadence: DESK_MEETING
+    BREAK_ROOM:
+      title: "Salle de pause"
+      cadence: CAFETERIA
+    STAIRS:
+      title: "Escaliers"
+      cadence: STAIRS
+    TOILETS:
+      title: "Sanitaires"
+      cadence: TOILETS
+    CHECKROOM:
+      title: "Vestiaires"
+      cadence: CHECKROOM
+    SHOWER:
+      title: "Douches"
+      cadence: SHOWER
+    OTHER:
+      title: "Autre piece"
+      cadence: EMPTY
+    KITCHEN:
+      title: "Cuisine"
+      cadence: FAKE
+      additional_properties:
+        - SELECT_KITCHEN_CLEAN_TYPE
+    RESTROOM:
+      title: "Salle de restaurant"
+      cadence: FAKE
+      additional_properties:
+        - SELECT_RESTROOM_CLEAN_TYPE
+    TERRACES:
+      title: "Terrasses"
+      cadence: TERRACES
+    TERRACES_SWEEPING:
+      title: "Balayage terrasses"
+      cadence: TERRACES_SWEEPING
+
+  cadences:
+    DESK_MEETING:
+      title: "Bureau & Salle de réunion - Nettoyage complet"
+      frequencies:
+        H1:
+          washable_floor: 160
+          carpeted_floor: 180
+        H2:
+          washable_floor: 165
+          carpeted_floor: 190
+        H3:
+          washable_floor: 170
+          carpeted_floor: 195
+        H4:
+          washable_floor: 175
+          carpeted_floor: 200
+        H5:
+          washable_floor: 180
+          carpeted_floor: 210
+    CHECKROOM:
+      title: "Vestiaire"
+      frequencies:
+        H1:
+          washable_floor: 110
+          carpeted_floor: 110
+        H2:
+          washable_floor: 120
+          carpeted_floor: 120
+        H3:
+          washable_floor: 130
+          carpeted_floor: 130
+        H4:
+          washable_floor: 140
+          carpeted_floor: 140
+        H5:
+          washable_floor: 150
+          carpeted_floor: 150
+    SHOWER:
+      title: "Douches (Complet)"
+      frequencies:
+        H1:
+          washable_floor: 55
+          carpeted_floor: 70
+        H2:
+          washable_floor: 60
+          carpeted_floor: 75
+        H3:
+          washable_floor: 60
+          carpeted_floor: 75
+        H4:
+          washable_floor: 65
+          carpeted_floor: 80
+        H5:
+          washable_floor: 70
+          carpeted_floor: 85
+    TOILETS:
+      title: "WC"
+      frequencies:
+        H1-H7:
+          washable_floor: 60
+          carpeted_floor: 60
+    STAIRS:
+      title: "Escaliers"
+      frequencies:
+        H1-H7:
+          washable_floor: 100
+          carpeted_floor: 100
+    CIRCULATION:
+      title: "Circulations (Lavage manuel)"
+      frequencies:
+        H1:
+          washable_floor: 200
+          carpeted_floor: 200
+        H2:
+          washable_floor: 220
+          carpeted_floor: 220
+        H3:
+          washable_floor: 230
+          carpeted_floor: 230
+        H4:
+          washable_floor: 250
+          carpeted_floor: 250
+        H5:
+          washable_floor: 280
+          carpeted_floor: 280
+    CAFETERIA:
+      title: "Cafétéria"
+      frequencies:
+        H1:
+          washable_floor: 90
+          carpeted_floor: 90
+        H2:
+          washable_floor: 95
+          carpeted_floor: 95
+        H3:
+          washable_floor: 100
+          carpeted_floor: 100
+        H4:
+          washable_floor: 105
+          carpeted_floor: 105
+        H5:
+          washable_floor: 110
+          carpeted_floor: 110
+    TERRACES:
+      title: "Terrasses"
+      frequencies:
+        H1-H7:
+          washable_floor: 80
+          carpeted_floor: 80
+    TERRACES_SWEEPING:
+      title: "Balayage terrasses"
+      frequencies:
+        H1-H7:
+          washable_floor: 150
+          carpeted_floor: 150
+    FAKE:
+      title: "Fake (not used)"
+      frequencies:
+        H1-H7:
+          fixed_time_in_hours: 0.01

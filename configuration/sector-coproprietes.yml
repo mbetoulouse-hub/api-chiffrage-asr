@@ -1,0 +1,217 @@
+coproprietes:
+  title: "Copropriétés"
+  buildings_type:
+    IMMEUBLE:
+      title: "Immeuble"
+      rooms_type:
+        - HALL
+        - CIRCULATIONS
+        - ELEVATOR
+        - STAIRS
+        - TOILETS
+        - OFFICE
+        - OTHER
+    PARKING:
+      title: "Parking et local velos"
+      rooms_type:
+        - RESERVE
+        - PARKING_OUTDOOR_LEAF
+        - PARKING_OUTDOOR_PICKING_LEAF
+        - PARKING_UNDERGROUND_PICKING
+        - PARKING_OUTDOOR
+        - PARKING_UNDERGROUND
+    CONTAINERS:
+      title: "Containers"
+      rooms_type:
+        - CONTAINERS_IN_SORTING
+        - CONTAINERS_IN_OM
+        - CONTAINERS_OUT_SORTING
+        - CONTAINERS_OUT_OM
+        - CONTAINERS_DISINFECTION
+        - GARBAGE
+
+  rooms_type:
+    HALL:
+      title: "Hall"
+      cadence: HALL
+    CIRCULATIONS:
+      title: "Circulations"
+      cadence: CIRCULATION
+    ELEVATOR:
+      title: "Ascenseurs"
+      cadence: ELEVATOR
+    STAIRS:
+      title: "Escaliers"
+      cadence: STAIRS
+    TOILETS:
+      title: "Sanitaires"
+      cadence: TOILETS
+    OFFICE:
+      title: "Bureaux"
+      cadence: DESK_MEETING
+    PARKING_OUTDOOR_LEAF:
+      title: "Parking exterieur  (hors feuille)"
+      cadence: PARKING_ONE
+    PARKING_OUTDOOR_PICKING_LEAF:
+      title: "Parking exterieur - Picking  (hors feuille)"
+      cadence: PARKING_ONE
+    PARKING_UNDERGROUND_PICKING:
+      title: "Parking sous sol Picking"
+      cadence: PARKING_ONE
+    PARKING_OUTDOOR:
+      title: "Parking exterieur"
+      cadence: PARKING_TWO
+    PARKING_UNDERGROUND:
+      title: "Parking sous sol"
+      cadence: PARKING_TWO
+    RESERVE:
+      title: "Réserve/Stock/archives/Tgbt"
+      cadence: RESERVE
+    CONTAINERS_IN_SORTING:
+      title: "Service containers entrée trie"
+      cadence: FIXED_CONTAINERS
+    CONTAINERS_IN_OM:
+      title: "Service containers entrée OM"
+      cadence: FIXED_CONTAINERS
+    CONTAINERS_OUT_SORTING:
+      title: "Service containers sortie trie"
+      cadence: FIXED_CONTAINERS
+    CONTAINERS_OUT_OM:
+      title: "Service containers sortie OM"
+      cadence: FIXED_CONTAINERS
+    CONTAINERS_DISINFECTION:
+      title: "Désinfection containers"
+      cadence: CONTAINERS_DISINFECTION
+      additional_properties:
+        - INT_INPUT_CONTAINERS
+    GARBAGE:
+      title: "Local poubelles"
+      cadence: GARBAGE
+    OTHER:
+      title: "Autre piece"
+      cadence: EMPTY
+
+  cadences:
+    DESK_MEETING:
+      title: "Bureau & Salle de réunion - Nettoyage complet"
+      frequencies:
+        H1:
+          washable_floor: 160
+          carpeted_floor: 180
+        H2:
+          washable_floor: 165
+          carpeted_floor: 190
+        H3:
+          washable_floor: 170
+          carpeted_floor: 195
+        H4:
+          washable_floor: 175
+          carpeted_floor: 200
+        H5:
+          washable_floor: 180
+          carpeted_floor: 210
+    TOILETS:
+      title: "Sanitaires"
+      frequencies:
+        H1:
+          washable_floor: 50
+          carpeted_floor: 50
+        H2:
+          washable_floor: 55
+          carpeted_floor: 55
+        H3:
+          washable_floor: 60
+          carpeted_floor: 60
+        H4:
+          washable_floor: 65
+          carpeted_floor: 65
+        H5:
+          washable_floor: 70
+          carpeted_floor: 70
+    ELEVATOR:
+      title: "Ascenseur"
+      frequencies:
+        H1-H7:
+          washable_floor: 30
+          carpeted_floor: 30
+    STAIRS:
+      title: "Escaliers"
+      frequencies:
+        H1-H7:
+          washable_floor: 100
+          carpeted_floor: 100
+    CIRCULATION:
+      title: "Circulations"
+      frequencies:
+        H1:
+          washable_floor: 170
+          carpeted_floor: 190
+        H2:
+          washable_floor: 180
+          carpeted_floor: 200
+        H3:
+          washable_floor: 190
+          carpeted_floor: 200
+        H4:
+          washable_floor: 200
+          carpeted_floor: 220
+        H5:
+          washable_floor: 210
+          carpeted_floor: 220
+    HALL:
+      title: "Hall"
+      frequencies:
+        H1:
+          washable_floor: 170
+          carpeted_floor: 190
+          min_time_in_hours: 0.25
+        H2:
+          washable_floor: 180
+          carpeted_floor: 200
+          min_time_in_hours: 0.25
+        H3:
+          washable_floor: 190
+          carpeted_floor: 200
+          min_time_in_hours: 0.25
+        H4:
+          washable_floor: 200
+          carpeted_floor: 220
+          min_time_in_hours: 0.25
+        H5:
+          washable_floor: 210
+          carpeted_floor: 220
+          min_time_in_hours: 0.25
+    RESERVE:
+      title: "Réserve/Stock/archives/Tgbt"
+      frequencies:
+        H1-H7:
+          washable_floor: 200
+          carpeted_floor: 200
+    PARKING_ONE:
+      title: "Parking One"
+      frequencies:
+        H1-H7:
+          washable_floor: 2500
+          carpeted_floor: 2500
+    PARKING_TWO:
+      title: "Parking Two"
+      frequencies:
+        H1-H7:
+          washable_floor: 250
+          carpeted_floor: 250
+    FIXED_CONTAINERS:
+      title: "Fixed containers"
+      frequencies:
+        H1-H7:
+          fixed_time_in_hours: 0.5
+    CONTAINERS_DISINFECTION:
+      title: "Container disinfection"
+      frequencies:
+        H1-H7:
+          fixed_time_in_hours: 0.01
+    GARBAGE:
+      title: "Local poubelles"
+      frequencies:
+        H1-H7:
+          washable_floor: 120
+          carpeted_floor: 120

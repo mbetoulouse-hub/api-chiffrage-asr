@@ -1,0 +1,247 @@
+medical:
+  title: "Secteur médical"
+  buildings_type:
+    DEFAULT:
+      title: "Bâtiment médical"
+      rooms_type:
+        - SAS
+        - CIRCULATIONS
+        - HOME
+        - COFFEE_AREA
+        - BREAK_ROOM
+        - KITCHEN
+        - ELEVATOR
+        - STAIRS
+        - TOILETS
+        - CHECKROOM
+        - GARBAGE
+        - SHOWER
+        - RESERVE
+        - ACTIVITY_ROOM
+        - WAITING_ROOM
+        - CONSULTATION_OFFICE
+        - OTHER
+
+  rooms_type:
+    SAS:
+      title: "sas"
+      cadence: CIRCULATION
+    CIRCULATIONS:
+      title: "Circulations/dégagement"
+      cadence: CIRCULATION
+    HOME:
+      title: "Accueil"
+      cadence: HOME
+    OFFICE:
+      title: "Bureaux"
+      cadence: DESK_MEETING
+    COFFEE_AREA:
+      title: "Espace café"
+      cadence: COFFEE_AREA
+    BREAK_ROOM:
+      title: "Salle de pause"
+      cadence: CAFETERIA
+    KITCHEN:
+      title: "Cuisine"
+      cadence: CAFETERIA
+    ELEVATOR:
+      title: "Ascenseurs"
+      cadence: ELEVATOR
+    STAIRS:
+      title: "Escaliers"
+      cadence: STAIRS
+    TOILETS:
+      title: "Sanitaires"
+      cadence: TOILETS
+    CHECKROOM:
+      title: "Vestiaires"
+      cadence: CHECKROOM
+    GARBAGE:
+      title: "Corbeilles"
+      cadence: GARBAGE
+    SHOWER:
+      title: "Douches"
+      cadence: SHOWER
+    RESERVE:
+      title: "Réserve/Stock/archives/Tgbt"
+      cadence: RESERVE
+    ACTIVITY_ROOM:
+      title: "Salle d'activité"
+      cadence: ACTIVITY_ROOM
+    WAITING_ROOM:
+      title: "Salle d'attente"
+      cadence: WAITING_ROOM
+    CONSULTATION_OFFICE:
+      title: "Bureaux de consultation"
+      cadence: FAKE
+      additional_properties:
+        - CHECK_BOX_ARMCHAIR
+    OTHER:
+      title: "Autre piece"
+      cadence: EMPTY
+
+  cadences:
+    DESK_MEETING:
+      title: "Bureau & Salle de réunion - Nettoyage complet"
+      frequencies:
+        H1:
+          washable_floor: 160
+          carpeted_floor: 180
+        H2:
+          washable_floor: 165
+          carpeted_floor: 190
+        H3:
+          washable_floor: 170
+          carpeted_floor: 195
+        H4:
+          washable_floor: 175
+          carpeted_floor: 200
+        H5:
+          washable_floor: 180
+          carpeted_floor: 210
+    GARBAGE:
+      title: "Corbeilles"
+      frequencies:
+        H1:
+          washable_floor: 900
+          carpeted_floor: 900
+        H2-H7:
+          washable_floor: 1000
+          carpeted_floor: 1000
+    CHECKROOM:
+      title: "Vestiaire"
+      frequencies:
+        H1:
+          washable_floor: 110
+          carpeted_floor: 110
+        H2:
+          washable_floor: 120
+          carpeted_floor: 120
+        H3:
+          washable_floor: 130
+          carpeted_floor: 130
+        H4:
+          washable_floor: 140
+          carpeted_floor: 140
+        H5:
+          washable_floor: 150
+          carpeted_floor: 150
+    SHOWER:
+      title: "Douches (Complet)"
+      frequencies:
+        H1:
+          washable_floor: 55
+          carpeted_floor: 70
+        H2:
+          washable_floor: 60
+          carpeted_floor: 75
+        H3:
+          washable_floor: 60
+          carpeted_floor: 75
+        H4:
+          washable_floor: 65
+          carpeted_floor: 80
+        H5:
+          washable_floor: 70
+          carpeted_floor: 85
+    TOILETS:
+      title: "Sanitaires"
+      frequencies:
+        H1:
+          washable_floor: 50
+          carpeted_floor: 50
+        H2:
+          washable_floor: 55
+          carpeted_floor: 55
+        H3:
+          washable_floor: 60
+          carpeted_floor: 60
+        H4:
+          washable_floor: 65
+          carpeted_floor: 65
+        H5:
+          washable_floor: 70
+          carpeted_floor: 70
+    ELEVATOR:
+      title: "Ascenseur"
+      frequencies:
+        H1-H7:
+          washable_floor: 30
+          carpeted_floor: 30
+    STAIRS:
+      title: "Escaliers"
+      frequencies:
+        H1-H7:
+          washable_floor: 100
+          carpeted_floor: 100
+    CIRCULATION:
+      title: "Circulations / Hall (Lavage manuel)"
+      frequencies:
+        H1:
+          washable_floor: 200
+          carpeted_floor: 200
+        H2:
+          washable_floor: 220
+          carpeted_floor: 220
+        H3:
+          washable_floor: 230
+          carpeted_floor: 230
+        H4:
+          washable_floor: 250
+          carpeted_floor: 250
+        H5:
+          washable_floor: 280
+          carpeted_floor: 280
+    CAFETERIA:
+      title: "Cafétéria/Cuisine"
+      frequencies:
+        H1:
+          washable_floor: 90
+          carpeted_floor: 90
+        H2:
+          washable_floor: 95
+          carpeted_floor: 95
+        H3:
+          washable_floor: 100
+          carpeted_floor: 100
+        H4:
+          washable_floor: 105
+          carpeted_floor: 105
+        H5:
+          washable_floor: 110
+          carpeted_floor: 110
+    COFFEE_AREA:
+      title: "Espace Café"
+      frequencies:
+        H1-H7:
+          washable_floor: 140
+          carpeted_floor: 140
+    RESERVE:
+      title: "Réserve/Stock/archives/Tgbt"
+      frequencies:
+        H1-H7:
+          washable_floor: 200
+          carpeted_floor: 200
+    ACTIVITY_ROOM:
+      title: "Salle d'activité"
+      frequencies:
+        H1-H7:
+          washable_floor: 175
+          carpeted_floor: 175
+    WAITING_ROOM:
+      title: "Salle d'attente"
+      frequencies:
+        H1-H7:
+          washable_floor: 150
+          carpeted_floor: 150
+    FAKE:
+      title: "Fake cadence (not used)"
+      frequencies:
+        H1-H7:
+          fixed_time_in_hours: 0.01
+    HOME:
+      title: "Accueil"
+      frequencies:
+        H1-H7:
+          washable_floor: 170
+          carpeted_floor: 180

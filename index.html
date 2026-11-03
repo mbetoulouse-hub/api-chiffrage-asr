@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculateur</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .flex-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        label {
+            width: 100px;
+        }
+        input, select {
+            padding: 5px;
+        }
+        .building-container {
+            border: 1px solid #aaa;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+        .room-container {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px dashed #aaa;
+            border-radius: 6px;
+        }
+        button {
+            padding: 8px 12px;
+            margin-top: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #4caf50;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<h1>Calculateur</h1>
+
+<div class="section">
+    <label for="sector">Secteur d'activité</label>
+    <select id="sector">
+    </select>
+</div>
+
+<div class="section">
+    <h3>Taux horaire</h3>
+    <div id="rates"></div>
+</div>
+
+<div class="section">
+    <h3>Créer des bâtiments</h3>
+    <button onclick="addBuilding()">Ajouter un bâtiment</button>
+    <div id="buildings"></div>
+</div>
+
+<button onclick="calculate()">Calculer</button>
+
+<div id="result" class="result"></div>
+
+<script>
+    const dev = true;
+    const API = dev ? 'http://localhost:7670/api/v1' : 'https://apiasr.killian-dev.fr/api/v1';
+    const frequencies = ['H1', 'H2', 'H3', 'H4', 'H5', "H6", 'H7'];
+    const __setors = buildSectors(true);
+
+    createRateInputs();
+
+    async function addBuilding() {
+        const sectors = await buildSectors(false);
+        const selectedSector = document.querySelector('#sector').value;
+        const sector = sectors.find(obj => obj.sector === selectedSector);
+
+        const options = sector.buildingTypes.map(bt => `<option value="${bt.key}">${bt.title}</option>`).join('');
+
+        const buildingContainer = document.createElement('div');
+        buildingContainer.className = 'building-container';
+        buildingContainer.innerHTML = `
+        <input type="text" placeholder="Nom du bâtiment" class="building-name" />
+        <select class="building-type">
+            ${options}
+        </select>
+        <button type="button" onclick="addRoom(this)">Ajouter une pièce</button>
+        <div class="rooms"></div>
+      `;
+        document.getElementById('buildings').appendChild(buildingContainer);
+    }
+
+    async function addRoom(button) {
+        // const roomTypes = await buildRoomsTypes(document.querySelector('#sector').value);
+        const sectors = await buildSectors(false);
+        const selectedSector = document.querySelector('#sector').value;
+        const sector = sectors.find(obj => obj.sector === selectedSector);
+
+        const selectedBuilding = button.parentElement.querySelector('.building-type').value;
+        const roomTypes = sector.buildingTypes.find(bt => bt.key === selectedBuilding).rooms;
+
+        const container = document.createElement('div');
+        container.className = 'room-container';
+        container.innerHTML = `
+        <input placeholder="Nom de la pièce" class="room-name" />
+        <select class="room-type">
+        </select>
+        <input type="number" placeholder="Surface" class="room-surface" />
+        <select class="floor-type">
+          <option value="WASHABLE">Lavable</option>
+          <option value="CARPETED">Moquette</option>
+        </select>
+        <select class="frequency">
+          <option value="H1">H1</option>
+          <option value="H2">H2</option>
+          <option value="H3">H3</option>
+          <option value="H4">H4</option>
+          <option value="H5">H5</option>
+          <option value="H6">H6</option>
+          <option value="H7">H7</option>
+        </select>
+        <input placeholder="Remarques" class="remarks" />
+      `;
+        button.parentElement.querySelector('.rooms').appendChild(container);
+
+        const select = container.querySelector('.room-type');
+        for (const roomType of roomTypes) {
+            const option = document.createElement("option");
+            option.value = roomType.key;
+            option.text = roomType.title;
+            select.appendChild(option);
+        }
+
+        select.addEventListener("change", function() {
+            const selectedValue = this.value;
+            const selectedOption = roomTypes.find(type => type.key === selectedValue);
+
+            container.querySelectorAll('.room-generated-input').forEach(el => el.remove());
+
+
+            if(Array.isArray(selectedOption.additionalProperties)) {
+                const insertAfterElement = container.querySelector('.room-surface');
+
+                selectedOption.additionalProperties.forEach(prop => {
+                    if (prop === "INT_INPUT_CONTAINERS") {
+                        insertAfterElement.insertAdjacentHTML("afterend", `
+                    <input type="number" name="INT_INPUT_CONTAINERS" placeholder="Nombre de containers" class="room-generated-input" />
+                `);
+                    } else if (prop === "CUSTOM_CADENCE") {
+                        insertAfterElement.insertAdjacentHTML("afterend", `
+                  <input type="number" name="CUSTOM_CADENCE" placeholder="Cadence" class="room-cadence room-surface room-generated-input" />
+                `);
+                    } else if(prop === "CLEANING_X_TIMES") {
+                        insertAfterElement.insertAdjacentHTML("afterend", `
+                        <select name="CLEANING_X_TIMES" class="x-times room-generated-input">
+                            <option value="3">nettoyage en 3 temps</option>
+                            <option value="5">nettoyage en 5 temps</option>
+                            <option value="7">nettoyage en 7 temps</option>
+                        </select>
+                `);
+                    } else if (prop === "CHECK_BOX_ARMCHAIR") {
+                        insertAfterElement.insertAdjacentHTML("afterend", `
+                        <p>Paillasses et fauteuils/tables de soin inclus ? <input type="checkbox" name="CHECK_BOX_ARMCHAIR" class="room-generated-input"/></p>
+                `);
+                    } else if (prop === "CHECK_BOX_ACTIVITY") {
+                        insertAfterElement.insertAdjacentHTML("afterend", `
+                        <p>Avec désinfection ? <input type="checkbox" name="CHECK_BOX_ACTIVITY" class="room-generated-input"/></p>
+                `);
+                    } else if (prop === "CHECK_BOX_PARTIAL") {
+                        insertAfterElement.insertAdjacentHTML("afterend", `
+                        <p>Partiel ? <input type="checkbox" name="CHECK_BOX_PARTIAL" class="room-generated-input"/></p>
+                `);
+                    } else if (prop === "CHECK_BOX_PARKING") {
+                        insertAfterElement.insertAdjacentHTML("afterend", `
+                        <p>Picking + poubelles ? <input type="checkbox" name="CHECK_BOX_PARKING" class="room-generated-input"/></p>
+                `);
+                    }
+                });
+            }
+        });
+    }
+
+    async function calculate() {
+        const sector = document.getElementById('sector').value;
+
+        const buildings = Array.from(document.querySelectorAll('.building-container')).map(building => {
+            const name = building.querySelector('.building-name').value;
+            const buildingType = building.querySelector('.building-type').value;
+            const rooms = Array.from(building.querySelectorAll('.room-container')).map(room => {
+                const additionalPropsInputs = room.querySelectorAll('.room-generated-input');
+
+                const additionalProperties = Array.from(additionalPropsInputs).map(input => ({
+                    key: input.name,
+                    value: input.type === "checkbox" ? input.checked : input.value
+                }));
+
+                return {
+                    name: room.querySelector('.room-name').value,
+                    type: room.querySelector('.room-type').value,
+                    surface: parseFloat(room.querySelector('.room-surface').value),
+                    floorType: room.querySelector('.floor-type').value,
+                    frequency: room.querySelector('.frequency').value,
+                    remarks: room.querySelector('.remarks').value,
+                    additionalProperties
+                };
+            });
+            return { name, buildingType, rooms };
+        });
+
+        const hourlyRates = {};
+        frequencies.forEach(freq => {
+            const value = parseFloat(document.getElementById(freq).value);
+            if (!isNaN(value)) {
+                hourlyRates[freq] = value;
+            }
+        });
+
+        const result = {
+            sector,
+            buildings,
+            hourlyRates
+        };
+
+        console.log("request: ", JSON.stringify(result));
+        try {
+            const response = await fetch(API + '/calculate/simulate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(result)
+            });
+
+            const data = await response.json();
+            console.log(data);
+            document.getElementById('result').innerHTML = `
+          <strong>Surface Totale :</strong> ${data.aggregateResult.surfaceSum} m²<br />
+<strong>Temps Total :</strong> ${data.aggregateResult.timeSumRounded} heures<br />
+<strong>Coût Mensuel Total :</strong> ${data.aggregateResult.monthlyRateSum} €<br />
+<strong>Prix au m² :</strong> ${data.aggregateResult.pricePerSquareMeter} €<br />
+
+<hr />
+<strong>Alerts :</strong><br /><br />
+<ul>
+      ${data.alerts.map(d => `
+        <li><strong>${d}</strong></li>
+      `).join('')}
+    </ul>
+
+<hr />
+
+<strong>Bâtiments :</strong><br /><br />
+
+${data.buildings.map(b => `
+  <div style="margin-bottom: 1em;">
+    <strong>${b.name}</strong><br />
+    &nbsp;&nbsp;<strong>Surface Totale :</strong> ${b.aggregateResult.surfaceSum} m²<br />
+    &nbsp;&nbsp;<strong>Temps Total :</strong> ${b.aggregateResult.timeSumRounded} heures<br />
+    &nbsp;&nbsp;<strong>Coût Mensuel Total :</strong> ${b.aggregateResult.monthlyRateSum} €<br />
+    &nbsp;&nbsp;<strong>Prix au m² :</strong> ${b.aggregateResult.pricePerSquareMeter} €<br />
+
+    <ul>
+      ${b.details.map(d => `
+        <li><strong>${d.name}</strong> — ${d.surface} m² — ${d.timeInHours.toFixed(2)} h — ${d.monthlyRate.toFixed(2)} € (Taux : ${d.hourlyRateUsed} €/h)</li>
+      `).join('')}
+    </ul>
+  </div>
+`).join('')}
+
+<hr />
+
+<strong>Spécials :</strong><br /><br />
+
+${Object.entries(data.specials).map(([key, b]) => `
+  <div style="margin-bottom: 1em;">
+    <strong>${key}</strong><br />
+    &nbsp;&nbsp;<strong>Surface Totale :</strong> ${b.aggregateResult.surfaceSum} m²<br />
+    &nbsp;&nbsp;<strong>Temps Total :</strong> ${b.aggregateResult.timeSumRounded} heures<br />
+    &nbsp;&nbsp;<strong>Coût Mensuel Total :</strong> ${b.aggregateResult.monthlyRateSum} €<br />
+    &nbsp;&nbsp;<strong>Prix au m² :</strong> ${b.aggregateResult.pricePerSquareMeter} €<br />
+
+    <ul>
+      ${b.details.map(d => `
+        <li><strong>${d.name}</strong> — ${d.surface} m² — ${d.timeInHours.toFixed(2)} h — ${d.monthlyRate.toFixed(2)} € (Taux : ${d.hourlyRateUsed} €/h)</li>
+      `).join('')}
+    </ul>
+  </div>
+`).join('')}
+`;
+        } catch (error) {
+            console.error('Erreur API:', error);
+            alert('Une erreur est survenue lors de l\'appel API.');
+        }
+    }
+
+    async function createRateInputs() {
+
+        try {
+            const response = await fetch(API + '/rates', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            const data = await response.json();
+            const container = document.getElementById('rates');
+            frequencies.forEach(freq => {
+                const row = document.createElement('div');
+                row.className = 'flex-row';
+                row.innerHTML = `
+          <label>${freq}</label>
+          Min: <p>${data.ranges[freq].min}</p>
+          Max: <p>${data.ranges[freq].max}</p>
+          Valeur: <input type="number" id="${freq}" placeholder="valeur" step="0.1" />
+        `;
+                container.appendChild(row);
+            });
+        } catch (error) {
+            console.error('Erreur API:', error);
+            alert('Une erreur est survenue lors de l\'appel API.');
+        }
+
+    }
+
+    async function buildSectors(init) {
+        try {
+            const response = await fetch(API + '/sector/types', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            const data = await response.json();
+
+            if(init) {
+                for (const dataKey of data) {
+                    const select = document.getElementById("sector");
+                    const option = document.createElement("option");
+                    option.value = dataKey.sector;
+                    option.text = dataKey.sector;
+                    select.appendChild(option);
+                }
+            }
+
+            return data;
+        } catch (error) {
+            console.error('Erreur API:', error);
+            alert('Une erreur est survenue lors de l\'appel API.');
+        }
+        return []
+    }
+</script>
+</body>
+</html>

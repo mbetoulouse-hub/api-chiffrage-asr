@@ -1,0 +1,14 @@
+global:
+  rates:
+    H1-A:
+      min: 26.0
+      max: 30.0
+    H2:
+      min: 25.0
+      max: 26.0
+    H3:
+      min: 24.0
+      max: 25.0
+    H4-H7:
+      min: 23.5
+      max: 24.0

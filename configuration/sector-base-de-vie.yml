@@ -1,0 +1,100 @@
+life-based:
+  title: "Base de vie"
+  buildings_type:
+    DEFAULT:
+      title: "Bâtiment base de vie"
+      rooms_type:
+        - CIRCULATIONS
+        - OFFICE
+        - HOME
+        - MEETING
+        - COFFEE_AREA
+        - BREAK_ROOM
+        - KITCHEN
+        - STAIRS
+        - TOILETS
+        - CHECKROOM
+        - SHOWER
+        - OTHER
+
+  rooms_type:
+    CIRCULATIONS:
+      title: "Circulations"
+      cadence: CIRCULATIONS
+    HOME:
+      title: "Accueil"
+      cadence: HOME
+    OFFICE:
+      title: "Bureaux"
+      cadence: DESK_MEETING
+    MEETING:
+      title: "Salle de réunion"
+      cadence: CHECKROOM
+    COFFEE_AREA:
+      title: "Espace café"
+      cadence: CHECKROOM
+    BREAK_ROOM:
+      title: "Salle de pause"
+      cadence: BREAK_ROOM
+    KITCHEN:
+      title: "Cuisine"
+      cadence: CHECKROOM
+    STAIRS:
+      title: "Escaliers"
+      cadence: CHECKROOM
+    TOILETS:
+      title: "Sanitaires"
+      cadence: TOILETS
+    CHECKROOM:
+      title: "Vestiaires"
+      cadence: CHECKROOM
+    SHOWER:
+      title: "Douches"
+      cadence: SHOWER
+    OTHER:
+      title: "Autre piece"
+      cadence: EMPTY
+
+  cadences:
+    DESK_MEETING:
+      title: "Base de vie bureaux"
+      frequencies:
+        H1-H7:
+          washable_floor: 100
+          carpeted_floor: 100
+    CIRCULATIONS:
+      title: "Circulations"
+      frequencies:
+        H1-H7:
+          washable_floor: 130
+          carpeted_floor: 130
+    CHECKROOM:
+      title: "Base de vie vestiaires"
+      frequencies:
+        H1-H7:
+          washable_floor: 120
+          carpeted_floor: 120
+    TOILETS:
+      title: "Base de vie WC"
+      frequencies:
+        H1-H7:
+          washable_floor: 70
+          carpeted_floor: 70
+    SHOWER:
+      title: "Base de vie douches"
+      frequencies:
+        H1-H7:
+          washable_floor: 80
+          carpeted_floor: 80
+    BREAK_ROOM:
+      title: "Base de vie salle de pause"
+      frequencies:
+        H1-H7:
+          washable_floor: 80
+          carpeted_floor: 80
+    HOME:
+      title: "Accueil"
+      frequencies:
+        H1-H7:
+          washable_floor: 170
+          carpeted_floor: 180

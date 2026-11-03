@@ -1,0 +1,173 @@
+technical-cadence:
+  rates:
+    CLASSIC:
+      min: 50.0
+      max: 70.0
+    GREEN:
+      min: 70.0
+      max: 70.0
+    IONIC:
+      min: 75.0
+      max: 75.0
+    FLOOR:
+      min: 70.0
+      max: 100.0
+  cadences:
+    END_CONSTRUCTION:
+      title: "Fin de chantier"
+      services:
+        ONE_PHASE:
+          title: "1 phase complète"
+          range:
+            min: 10
+            max: 15
+          cadence: 15
+          type: CLASSIC
+        OTHER_PHASE:
+          title: "2 ou 3 phases"
+          cadence: -1
+          type: CLASSIC
+    CARPET:
+      title: "Moquette"
+      services:
+        INJECTION:
+          title: "Injection Extraction"
+          cadence: 60
+          type: CLASSIC
+        CARPET:
+          title: "Shampooing Moquette"
+          cadence: 50
+          type: CLASSIC
+    THERMOPLASTIC:
+      title: "Thermoplastique"
+      services:
+        SPRAY:
+          title: "Spray Method Thermoplastique"
+          cadence: 200
+          type: CLASSIC
+        HIGH_SPEED:
+          title: "Lustrage haute vitesse"
+          cadence: 350
+          type: CLASSIC
+        WET_STRIPPING:
+          title: "Décapage au mouillé et aspiration"
+          cadence: 30
+          type: CLASSIC
+        PORE_FILLERS:
+          title: "Application de bouche-pores"
+          cadence: 100
+          type: CLASSIC
+        EMULSION:
+          title: "Application d'émulsion 1 couche"
+          cadence: 150
+          type: CLASSIC
+    TILING:
+      title: "Carrelage"
+      services:
+        SINGLE_BRUSH:
+          title: "Lavage à la monobrosse"
+          cadence: 100
+          type: CLASSIC
+        SINGLE_BRUSH_SCRUBBING:
+          title: "Récurage à la monobrosse et aspiration"
+          cadence: 40
+          type: CLASSIC
+    PARQUET:
+      title: "Parquet"
+      services:
+        PARQUET_SURFACING:
+          title: "Surfaçage de parquet (sctoch mesh)"
+          cadence: 100
+          type: CLASSIC
+        PARQUET_SANDING:
+          title: "Ponçage de parquet"
+          cadence: 20
+          type: CLASSIC
+        VARNISHING:
+          title: "Vitrification (1 couche)"
+          cadence: 35
+          type: CLASSIC
+    MARBLE:
+      title: "Marbre"
+      services:
+        MARBLE_SPRAY:
+          title: "Spray marbre (entretien)"
+          cadence: 200
+          type: FLOOR
+        WET_BLASTING:
+          title: "Décapage au mouillé"
+          cadence: 20
+          type: FLOOR
+        MARBLE_CRYSTALLIZATION:
+          title: "Cristallisation de marbre (4 phases - disques + mono + eau)"
+          cadence: 4
+          type: FLOOR
+        MARBLE_SURFACING:
+          title: "Surfaçage de marbre (sctoch mesh)"
+          cadence: 10
+          type: FLOOR
+        MARBLE_SANDING:
+          title: "Ponçage de marbre"
+          cadence: 1
+          type: FLOOR
+    GLASS:
+      title: "Vitres"
+      services:
+        GLASS_SMALL_TILE:
+          title: "Lavage de vitre (Petit carreau)"
+          cadence: 15
+          type: CLASSIC
+        GLASS_NORMAL_TILE:
+          title: "Lavage de vitre (verre normal)"
+          range:
+              min: 45
+              max: 60
+          cadence: 50
+          type: CLASSIC
+        GLASS_PERCHE:
+          title: "Lavage de vitre PERCHE"
+          range:
+            min: 30
+            max: 40
+          cadence: 35
+          type: CLASSIC
+        GLASS_NACELLE:
+          title: "Lavage de vitre NACELLE"
+          cadence: 30
+          type: CLASSIC
+        GLASS_IONIC:
+          title: "Lavage au IONIC"
+          cadence: 40
+          type: IONIC
+        GLASS_TAG_REMOVAL:
+          title: "Enlèvement de tague sur vitre"
+          cadence: 30
+          type: CLASSIC
+        GLASS_AND_WOODWORK:
+          title: "Remise en état vitrerie + menuiseries"
+          cadence: 25
+          type: CLASSIC
+        GLASS_SOLAR_PANEL:
+          title: "Lavage panneaux solaires (IONIC)"
+          cadence: 30
+          type: IONIC
+    CLADDING:
+      title: "Bardage"
+      services:
+        CLASSING_HIGH_PRESSURE:
+          title: "Nettoyage haute pression"
+          range:
+            min: 60
+            max: 100
+          cadence: 80
+          type: CLASSIC
+    FLOOR:
+      title: "Sol"
+      services:
+        FLOOR_HIGH_PRESSURE:
+          title: "Nettoyage haute pression"
+          range:
+            min: 30
+            max: 60
+          cadence: 50
+          type: CLASSIC

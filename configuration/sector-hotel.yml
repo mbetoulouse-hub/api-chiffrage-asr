@@ -1,0 +1,335 @@
+hotel:
+  title: "Secteur Hotelier"
+  buildings_type:
+    RESTAURANT:
+      title: "Bâtiment restaurant"
+      rooms_type:
+        - KITCHEN
+        - TERRACES
+        - TERRACES_SWEEPING
+        - RESTROOM
+    SPORT:
+      title: "Bâtiment sport"
+      rooms_type:
+        - GROUP_COURSE
+        - SHOWER
+        - WEIGHTS_ROOM
+        - CARDIO_AREA
+        - CHILL
+    DEFAULT:
+      title: "Bâtiment hotelier"
+      rooms_type:
+        - HALL
+        - CIRCULATIONS
+        - HOME
+        - OFFICE
+        - MEETING
+        - WAITING_ROOM
+        - BREAK_ROOM
+        - STAIRS
+        - TOILETS
+        - CHECKROOM
+        - SPA
+        - HAMMAM
+        - SAUNA
+        - SWIMMING_POOL
+        - OTHER
+  rooms_type:
+    KITCHEN:
+      title: "Cuisine"
+      cadence: FAKE
+      additional_properties:
+        - SELECT_KITCHEN_CLEAN_TYPE
+    RESTROOM:
+      title: "Salle de restaurant"
+      cadence: FAKE
+      additional_properties:
+        - SELECT_RESTROOM_CLEAN_TYPE
+    TERRACES:
+      title: "Terrasses"
+      cadence: TERRACES
+    TERRACES_SWEEPING:
+      title: "Balayage terrasses"
+      cadence: TERRACES_SWEEPING
+    GROUP_COURSE:
+      title: "Salle de cours collectif"
+      cadence: GROUP_COURSE
+    SHOWER:
+      title: "Douches"
+      cadence: SHOWER
+    CHILL:
+      title: "Détente"
+      cadence: CHILL
+    WEIGHTS_ROOM:
+      title: "Salle de musculation"
+      cadence: FAKE
+      additional_properties:
+        - SELECT_WEIGHTS_SPECIFIC
+    CARDIO_AREA:
+      title: "Espace cardio"
+      cadence: FAKE
+      additional_properties:
+        - SELECT_CARDIO_SPECIFIC
+    HALL:
+      title: "Hall"
+      cadence: CIRCULATION
+    CIRCULATIONS:
+      title: "Circulations"
+      cadence: CIRCULATION
+    HOME:
+      title: "Réception / Accueil"
+      cadence: HOME
+    OFFICE:
+      title: "Bureaux"
+      cadence: DESK_MEETING
+    MEETING:
+      title: "Salles de séminaires"
+      cadence: DESK_MEETING
+    WAITING_ROOM:
+      title: "Salons"
+      cadence: WAITING_ROOM
+    BREAK_ROOM:
+      title: "Salle du personnel"
+      cadence: CAFETERIA
+    STAIRS:
+      title: "Escaliers"
+      cadence: STAIRS
+    TOILETS:
+      title: "Sanitaires"
+      cadence: TOILETS
+    CHECKROOM:
+      title: "Vestiaires"
+      cadence: CHECKROOM
+    SPA:
+      title: "Spa"
+      cadence: EMPTY
+    HAMMAM:
+      title: "Hammam"
+      cadence: EMPTY
+    SAUNA:
+      title: "Sauna"
+      cadence: EMPTY
+    SWIMMING_POOL:
+      title: "Piscine"
+      cadence: EMPTY
+    OTHER:
+      title: "Autre piece"
+      cadence: EMPTY
+
+  cadences:
+    WAITING_ROOM:
+      title: "Salons"
+      frequencies:
+        H1-H7:
+          washable_floor: 150
+          carpeted_floor: 150
+    DESK_MEETING:
+      title: "Salle de séminaires - Nettoyage complet"
+      frequencies:
+        H1:
+          washable_floor: 160
+          carpeted_floor: 180
+        H2:
+          washable_floor: 165
+          carpeted_floor: 190
+        H3:
+          washable_floor: 170
+          carpeted_floor: 195
+        H4:
+          washable_floor: 175
+          carpeted_floor: 200
+        H5:
+          washable_floor: 180
+          carpeted_floor: 210
+    CHECKROOM:
+      title: "Vestiaire"
+      frequencies:
+        H1:
+          washable_floor: 110
+          carpeted_floor: 110
+        H2:
+          washable_floor: 120
+          carpeted_floor: 120
+        H3:
+          washable_floor: 130
+          carpeted_floor: 130
+        H4:
+          washable_floor: 140
+          carpeted_floor: 140
+        H5:
+          washable_floor: 150
+          carpeted_floor: 150
+    TOILETS:
+      title: "Sanitaires"
+      frequencies:
+        H1:
+          washable_floor: 50
+          carpeted_floor: 50
+        H2:
+          washable_floor: 55
+          carpeted_floor: 55
+        H3:
+          washable_floor: 60
+          carpeted_floor: 60
+        H4:
+          washable_floor: 65
+          carpeted_floor: 65
+        H5:
+          washable_floor: 70
+          carpeted_floor: 70
+    STAIRS:
+      title: "Escaliers"
+      frequencies:
+        H1-H7:
+          washable_floor: 100
+          carpeted_floor: 100
+    CIRCULATION:
+      title: "Circulations / Hall (Lavage manuel)"
+      frequencies:
+        H1:
+          washable_floor: 200
+          carpeted_floor: 200
+        H2:
+          washable_floor: 220
+          carpeted_floor: 220
+        H3:
+          washable_floor: 230
+          carpeted_floor: 230
+        H4:
+          washable_floor: 250
+          carpeted_floor: 250
+        H5:
+          washable_floor: 280
+          carpeted_floor: 280
+    CAFETERIA:
+      title: "Salle du personnel"
+      frequencies:
+        H1:
+          washable_floor: 90
+          carpeted_floor: 90
+        H2:
+          washable_floor: 95
+          carpeted_floor: 95
+        H3:
+          washable_floor: 100
+          carpeted_floor: 100
+        H4:
+          washable_floor: 105
+          carpeted_floor: 105
+        H5:
+          washable_floor: 110
+          carpeted_floor: 110
+    GROUP_COURSE:
+      title: "Salle de cours collectif"
+      frequencies:
+        H1-H3:
+          washable_floor: 250
+          carpeted_floor: 250
+        H4-H7:
+          washable_floor: 350
+          carpeted_floor: 350
+    CHILL:
+      title: "Détente"
+      frequencies:
+        H1-H3:
+          washable_floor: 250
+          carpeted_floor: 250
+        H4-H7:
+          washable_floor: 350
+          carpeted_floor: 350
+    SHOWER:
+      title: "Douches (Complet)"
+      frequencies:
+        H1:
+          washable_floor: 55
+          carpeted_floor: 70
+        H2:
+          washable_floor: 60
+          carpeted_floor: 75
+        H3:
+          washable_floor: 60
+          carpeted_floor: 75
+        H4:
+          washable_floor: 65
+          carpeted_floor: 80
+        H5:
+          washable_floor: 70
+          carpeted_floor: 85
+    TERRACES:
+      title: "Terrasses"
+      frequencies:
+        H1-H7:
+          washable_floor: 80
+          carpeted_floor: 80
+    TERRACES_SWEEPING:
+      title: "Balayage terrasses"
+      frequencies:
+        H1-H7:
+          washable_floor: 150
+    FAKE:
+      title: "Fake (not used)"
+      frequencies:
+        H1-H7:
+          fixed_time_in_hours: 0.01
+    HOME:
+      title: "Accueil"
+      frequencies:
+        H1-H7:
+          washable_floor: 170
+          carpeted_floor: 180
+
+  zone_hotel:
+    prefill_room_type:
+      1:
+        STANDARD:
+          name: "Chambre Standard"
+          clearance_rate: 15
+          recouche_rate: 1
+        FAMILLE:
+          name: "Chambre famille"
+          clearance_rate: 17
+          recouche_rate: 13
+      2:
+        STANDARD:
+          name: "Chambre Standard"
+          clearance_rate: 18
+          recouche_rate: 12
+        FAMILLE:
+          name: "Chambre famille"
+          clearance_rate: 20
+          recouche_rate: 14
+      3:
+        STANDARD:
+          name: "Chambre Standard"
+          clearance_rate: 20
+          recouche_rate: 15
+        FAMILLE:
+          name: "Chambre famille"
+          clearance_rate: 25
+          recouche_rate: 17
+      4:
+        STANDARD:
+          name: "Chambre Standard"
+          clearance_rate: 25
+          recouche_rate: 18
+        FAMILLE:
+          name: "Chambre famille"
+          clearance_rate: 30
+          recouche_rate: 20
+        SUITE :
+          name: "Suite "
+          clearance_rate: 45
+          recouche_rate: 30
+      5:
+        SUPERIOR:
+          name: "Chambre Supérieure"
+          clearance_rate: 30
+          recouche_rate: 20
+        FAMILLE:
+          name: "Chambre famille"
+          clearance_rate: 40
+          recouche_rate: 25
+        SUITE :
+          name: "Suite "
+          clearance_rate: 60
+          recouche_rate: 35

@@ -1,0 +1,82 @@
+strategy-values:
+  # SelectKitchenCleanTypeStrategy
+  select-kitchen-clean-type:
+    floor: 80
+    complete: 50
+  
+  # SelectRestroomCleanTypeStrategy
+  select-restroom-clean-type:
+    aspiration: 150
+    carpet: 170
+    complete: 120
+  
+  # SelectWeigthsStrategy
+  select-weights-specific:
+    vacuum:
+      H1-H3: 300
+      H4-H7: 350
+    clean:
+      H1-H3: 200
+      H4-H7: 275
+    dust:
+      H1-H3: 120
+      H4-H7: 150
+  
+  # SelectCardioStrategy
+  select-cardio-specific:
+    floor:
+      H1-H3: 150
+      H4-H7: 180
+    dust:
+      H1-H3: 100
+      H4-H7: 120
+  
+  # CheckArmchairStrategy
+  check-armchair:
+    with-armchair:
+      H1-H3: 130
+      H4-H7: 150
+    without-armchair:
+      H1-H3: 150
+      H4-H7: 175
+  
+  # CheckActivityStrategy
+  check-activity:
+    with-disinfection: 120
+    without-disinfection: 150
+  
+  # CheckPartialStrategy
+  check-partial:
+    partial:
+      CLASSROOM_KINDERGARTEN: 165
+      CLASSROOM_ELEMENTARY: 170
+      FORMATION_ROOM: 180
+    full:
+      CLASSROOM_KINDERGARTEN: 130
+      CLASSROOM_ELEMENTARY: 140
+      FORMATION_ROOM: 150
+  
+  # CheckParkingStrategy
+  check-parking:
+    with-picking: 4500
+    without-picking: 5000
+  
+  # AutolaveuseStrategy
+  autolaveuse:
+    # >= for surface-threshold
+    surface-threshold: 2800
+    cadence-above-threshold: 550
+    cadence-below-threshold: 450
+  
+  # CleaningXTimesStrategy
+  cleaning-x-times:
+    times-3: 80
+    times-5: 40
+    times-7: 20
+  
+  # InputContainersStrategy
+  input-containers:
+    # <= for low-threshold
+    low-threshold: 3
+    low-cadence: 0.25
+    high-cadence-factor: 0.08
